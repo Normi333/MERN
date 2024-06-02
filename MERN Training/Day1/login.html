@@ -6,12 +6,36 @@
     <title>Login</title>
 </head>
 <body>
+    <style>
+        .btn{
+            color: white;
+            background-color: green;
+            font-size: 10px;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .btn-primary{
+            background-color: green;
+        }
+        .btn-secondary{
+            background-color: aqua;
+        }
+        .btn-delete{
+            background-color: red;
+        }
+    </style>
     <form method="post" action="/index.html">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" placeholder="Username">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Password">
-        <input type="submit" value="login">
+        <input class="btn" type="submit" value="login">
+        <br><br>
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-delete">Delete</button>
     </form>
 </body>
 </html>
