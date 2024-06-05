@@ -49,13 +49,25 @@
 
 // exercise
 
-let ask = (question, yes, no) =>{
-    if(confirm(question)) yes();
-    else no();
+// let ask = (question, yes, no) =>{
+//     if(confirm(question)) yes();
+//     else no();
+// }
+
+// ask(
+//     "Do You Agree?",
+//     () => alert("You Agreed."),
+//     () => alert("You canceled the execution.")
+// );
+
+const person = {
+    name : "Shisir",
+    age : 22,
+    place : "Nepal",
 }
 
-ask(
-    "Do You Agree?",
-    () => alert("You Agreed."),
-    () => alert("You canceled the execution.")
-);
+delete person.age
+person.name = "Shisir Thapa";
+person.salary = 1000000;
+console.log(person["name"])
+console.log(person);
