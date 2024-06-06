@@ -64,10 +64,13 @@ const person = {
     name : "Shisir",
     age : 22,
     place : "Nepal",
+    father
 }
 
 delete person.age
 person.name = "Shisir Thapa";
 person.salary = 1000000;
-console.log(person["name"])
+//console.log(person["name"])
 console.log(person);
+
+console.log(person.mother?.name) //optional chaining
