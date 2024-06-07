@@ -69,6 +69,7 @@
 //     console.log(key, person[key]);
 // }
 
+//while condition
 const student ={}
 while(1){
     const key = prompt("Enter Student's Key");
@@ -78,6 +79,20 @@ while(1){
     const value = prompt("Enter Student's Value");
     student[key] = value;
 }
+console.log(student);
+
+//recurrsion
+function enter(){
+    const key=prompt("Enter student key");
+    if(key === 'exit')
+        return 0;
+    const value=prompt("Enter student value");
+    student[key]=value;
+
+    enter();
+}
+
+enter();
 console.log(student);
 
 
