@@ -74,3 +74,4 @@ person.salary = 1000000;
 console.log(person);
 
 console.log(person.mother?.name) //optional chaining
+console.log("Hello World")
