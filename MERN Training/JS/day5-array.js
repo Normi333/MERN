@@ -6,29 +6,29 @@
 
 //loops in array (for of) 
 
-const names = ["Shisir","Rakesh","Riya"]
+// const names = ["Shisir","Rakesh","Riya"]
 
-const greet = (name) => console.log(`hello, ${name}`)
-names.forEach(greet, index =>{
-    console.log(`hello, ${names}`, index)
-});
+// const greet = (name) => console.log(`hello, ${name}`)
+// names.forEach(greet, index =>{
+//     console.log(`hello, ${names}`, index)
+// });
 
-//map -> same size but modify the elements
+// //map -> same size but modify the elements
 
-const numbers = [1, 2, 5, 32, 8]
-const doubleNumbers = numbers.map((number) => {
-    return number * 2;
-});
+// const numbers = [1, 2, 5, 32, 8]
+// const doubleNumbers = numbers.map((number) => {
+//     return number * 2;
+// });
 
-console.log("Double", doubleNumbers);
+// console.log("Double", doubleNumbers);
 
-//filter -> extracts elements out of the array
+// //filter -> extracts elements out of the array
 
-const numbersGreaterThan30 = numbers.filter((number) => {
-    return number > 30;
-});
+// const numbersGreaterThan30 = numbers.filter((number) => {
+//     return number > 30;
+// });
 
-console.log("Greater Than 30", numbersGreaterThan30);
+// console.log("Greater Than 30", numbersGreaterThan30);
 
 //greet(for every array)
 
@@ -57,3 +57,42 @@ console.log("Greater Than 30", numbersGreaterThan30);
 // for (let row of matrix){
 //     console.log(row);
 // }
+
+const products =[
+    {name:"Laptop", price: 300},
+    {name:"Earphone", price: 30},
+    {name:"Mobile", price: 100},
+    {name:"TV", price: 150},
+]
+
+const prices = products.map((product) =>{
+    return product.price;
+});
+const productLabel = products.map((product) =>{
+    return `${product.name} (Rs.${product.price})`
+});
+
+console.log(prices);
+console.log(productLabel);
+
+//find out the price of the phone
+
+const priceOfPhone = products.find((product) =>{
+    return product.name === 'Phone'
+});
+
+const productsHigherThan190 = products.filter((product)=>{
+    return product.price > 190
+});
+
+console.log(priceOfPhone);
+console.log(productsHigherThan190);
+
+const hasCheapProduct = products.some((product) => product.price < 200)
+console.log(hasCheapProduct?"Yes":"No");
+
+const shopIsCheap = products.every((product) => product.price < 200)
+console.log(shopIsCheap?"Expensive":"NotExpensive")  
+
+
+
