@@ -64,7 +64,7 @@
 // console.log(result);
 
 
-//loop in objects
+//loop in objects in objects  = in
 // for (const key in person){
 //     console.log(key, person[key]);
 // }
