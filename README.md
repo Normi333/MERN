@@ -1,1 +1,1 @@
-This Repository Contains My Journey in learning MERN.
+This Repository Contains the basic materials for learning MERN.

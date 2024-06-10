@@ -94,6 +94,11 @@
 // const shopIsCheap = products.every((product) => product.price < 200)
 // console.log(shopIsCheap?"Expensive":"NotExpensive")  
 
+
+
+
+//Homework
+
 const students = [
     {name: 'Alice', score: 85, favFruit: 'apple'},
     {name: 'Bob', score: 92, favFruit: 'apple'},
@@ -107,7 +112,7 @@ const count = {}
 students.forEach(student =>{
     const fruit = student.favFruit;
     if(count[fruit]){
-        count[fruit]++
+        count[fruit]++;
     }
     else{
         count[fruit]=1;
