@@ -58,41 +58,60 @@
 //     console.log(row);
 // }
 
-const products =[
-    {name:"Laptop", price: 300},
-    {name:"Earphone", price: 30},
-    {name:"Mobile", price: 100},
-    {name:"TV", price: 150},
+// const products =[
+//     {name:"Laptop", price: 300},
+//     {name:"Earphone", price: 30},
+//     {name:"Mobile", price: 100},
+//     {name:"TV", price: 150},
+// ]
+
+// const prices = products.map((product) =>{
+//     return product.price;
+// });
+// const productLabel = products.map((product) =>{
+//     return `${product.name} (Rs.${product.price})`
+// });
+
+// console.log(prices);
+// console.log(productLabel);
+
+// //find out the price of the phone
+
+// const priceOfPhone = products.find((product) =>{
+//     return product.name === 'Phone'
+// });
+
+// const productsHigherThan190 = products.filter((product)=>{
+//     return product.price > 190
+// });
+
+// console.log(priceOfPhone);
+// console.log(productsHigherThan190);
+
+// const hasCheapProduct = products.some((product) => product.price < 200)
+// console.log(hasCheapProduct?"Yes":"No");
+
+// const shopIsCheap = products.every((product) => product.price < 200)
+// console.log(shopIsCheap?"Expensive":"NotExpensive")  
+
+const students = [
+    {name: 'Alice', score: 85, favFruit: 'apple'},
+    {name: 'Bob', score: 92, favFruit: 'apple'},
+    {name: 'Charlie', score: 48, favFruit: 'orange'},
+    {name: 'David', score: 74, favFruit: 'pineapple'},
+    {name: 'Eve', score: 68, favFruit: 'orange'},
 ]
 
-const prices = products.map((product) =>{
-    return product.price;
-});
-const productLabel = products.map((product) =>{
-    return `${product.name} (Rs.${product.price})`
-});
+const count = {}
 
-console.log(prices);
-console.log(productLabel);
-
-//find out the price of the phone
-
-const priceOfPhone = products.find((product) =>{
-    return product.name === 'Phone'
+students.forEach(student =>{
+    const fruit = student.favFruit;
+    if(count[fruit]){
+        count[fruit]++
+    }
+    else{
+        count[fruit]=1;
+    }
 });
 
-const productsHigherThan190 = products.filter((product)=>{
-    return product.price > 190
-});
-
-console.log(priceOfPhone);
-console.log(productsHigherThan190);
-
-const hasCheapProduct = products.some((product) => product.price < 200)
-console.log(hasCheapProduct?"Yes":"No");
-
-const shopIsCheap = products.every((product) => product.price < 200)
-console.log(shopIsCheap?"Expensive":"NotExpensive")  
-
-
-
+console.log(count);
