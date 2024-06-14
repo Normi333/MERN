@@ -109,6 +109,6 @@ class Book{
     }
 
     displayInfo(){
-        console.log(`${this.#title}`)
+        console.log(`${this.#title}, ${this.#author}`)
     }
 }
