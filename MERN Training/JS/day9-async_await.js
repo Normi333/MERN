@@ -11,7 +11,7 @@
 // getDetails();
 
 
-//getting user name and location using async_await
+// getting user name and location using async_await
 // const getData = async (name) => {
 //     try{    //try -> throwing error
 //         const response = await fetch(`https://api.github.com/users/${name}`);
@@ -24,7 +24,7 @@
 // const username = prompt('Give Username');
 // getData(username);
 
-//doing with randomly gen person 
+//doing with randomly generated person 
 // async function muse(){
 //     try{
 //         const muu = await fetch('https://randomuser.me/api/');
