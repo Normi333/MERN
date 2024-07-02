@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <form>
+        <input type="text" name="task" id="task" placeholder="Your New Task.">
+        <input type="submit" value="add" />
+    </form>
+    <form>
+        <ul>
+        </ul>
+    </form>
+</body>
+<script>
+    const tasks = ["learn html", "learn css", "learn php"];
+
+    //create, read, update, delete
+
+    function deleteTask(indexToBeDeleted){
+        tasks.splice(indexToBeDeleted, 1);
+    };
+
+
+    function updateTask(index, task){
+        tasks[index] = task;
+    };
+
+
+    function addTask(task){
+        const ul = document.querySelector('ul');
+        let newtask = `<li>${task}</li>`
+        ul.appendChild = newtask;
+    };
+
+
+    function readTask(){
+        let taskList = "";
+        tasks.forEach((task)=>{
+            taskList += `<li>${task}</li>`;
+        });
+        console.log(taskList)
+        document.querySelector("ul").innerHTML = taskList;
+    };
+    readTask();
+    const form = document.querySelector('form');
+    form.addEventListener('submit',(e)=>{
+        const task = document.getElementById('task').value;
+        addTask(task);
+    })
+</script>
+</html>
+
