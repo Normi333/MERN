@@ -22,7 +22,7 @@ button.addEventListener("click", (e) => {
   alert("halla garxes");
 });
 
-const tasks = ["learn html", "learn css", "learn php"];
+let tasks = ["learn html", "learn css", "learn php"];
 
 //create, read, update, delete
 
