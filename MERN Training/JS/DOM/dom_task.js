@@ -14,21 +14,25 @@ const ul = document.querySelector('ul');
 const parentUl = document.getElementById('ul');
 
 let taskToBeEditedList = null;
-let tasks = ["learn html", "learn js", "learn everything"];
+const tasks = JSON.parse(localStorage.getItem("todos")) ?? [];
 
 // create, read, update, delete
-function addTask(task){
-  let ul = document.getElementById('ul');
-  let li = document.createElement('li');
-  li.innerHTML= `${task} <button>delete</button> <button>edit</button>`;
-  ul.appendChild(li);
-}
+const addTask = () => {
+  const newTask = taskInputEl.value;
+  const list = document.createElement("li");
+  list.innerHTML = `${newTask} <button>delete</button> <button>edit</button>`;
+  ul.append(list);
+  form.reset();
+  tasks.push(newTask);
+  localStorage.setItem("todos",JSON.stringify(tasks));
+  // localStorage.clear();
+};
 
 function readTask(){
   let string="";
   const deleteButton = " <button>delete</button> <button>edit</button></li>";
   for(t of tasks){
-    str = `<li>${t}`.concat(deleteButton);
+    str = `<li data-index="${index}">${t}`.concat(deleteButton);
     string += str;
   }
   ul.innerHTML= string;
@@ -59,6 +63,8 @@ parentUl.addEventListener('click', (e)=>{
   const { tagName, textContent, parentElement } = e.target;
   if (tagName === "BUTTON" && textContent === "delete"){
     parentElement.remove();
+    tasks.splice(parentElement.dataset.index, 1);
+    localStorage.setItem("todos", JSON.stringify(tasks));
   }
 
   if(tagName === "BUTTON" && textContent === "edit"){
@@ -72,6 +78,7 @@ parentUl.addEventListener('click', (e)=>{
     taskToBeEditedList = parentElement;
   }
 });
+
 readTask();
 
 
