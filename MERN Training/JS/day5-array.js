@@ -4,7 +4,7 @@
 // arr[1] = 2;
 // console.log(arr);
 
-//loops in array (for of) 
+//loops in array (for of)
 
 // const names = ["Shisir","Rakesh","Riya"]
 
@@ -51,8 +51,6 @@
 
 // //exercise Square matrix
 
-
-
 // matrix = [[9, 13, 5, 2], [1, 11, 7, 6], [3, 7 , 4 , 1], [6, 0, 7, 10]]
 // for (let row of matrix){
 //     console.log(row);
@@ -92,31 +90,27 @@
 // console.log(hasCheapProduct?"Yes":"No");
 
 // const shopIsCheap = products.every((product) => product.price < 200)
-// console.log(shopIsCheap?"Expensive":"NotExpensive")  
-
-
-
+// console.log(shopIsCheap?"Expensive":"NotExpensive")
 
 //Homework
 
 const students = [
-    {name: 'Alice', score: 85, favFruit: 'apple'},
-    {name: 'Bob', score: 92, favFruit: 'apple'},
-    {name: 'Charlie', score: 48, favFruit: 'orange'},
-    {name: 'David', score: 74, favFruit: 'pineapple'},
-    {name: 'Eve', score: 68, favFruit: 'orange'},
-]
+  { name: "Alice", score: 85, favFruit: "apple" },
+  { name: "Bob", score: 92, favFruit: "apple" },
+  { name: "Charlie", score: 48, favFruit: "orange" },
+  { name: "David", score: 74, favFruit: "pineapple" },
+  { name: "Eve", score: 68, favFruit: "orange" },
+];
 
-const count = {}
+const count = {};
 
-students.forEach(student =>{
-    const fruit = student.favFruit;
-    if(count[fruit]){
-        count[fruit]++;
-    }
-    else{
-        count[fruit]=1;
-    }
+students.forEach((student) => {
+  const fruit = student.favFruit;
+  if (count[fruit]) {
+    count[fruit]++;
+  } else {
+    count[fruit] = 1;
+  }
 });
 
 console.log(count);

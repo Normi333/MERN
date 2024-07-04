@@ -26,23 +26,23 @@ let tasks = ["learn html", "learn css", "learn php"];
 
 //create, read, update, delete
 
-function deleteTask(indexToBeDeleted){
-    tasks.splice(indexToBeDeleted, 1);
-};
-function updateTask(index, task){
-    tasks[index] = task;
-};
-function addTask(task){
-    tasks.push(task);
-};
-function readTask(){
-    tasks.forEach((task)=>{
-        console.log(task);
-    });
-};
+function deleteTask(indexToBeDeleted) {
+  tasks.splice(indexToBeDeleted, 1);
+}
+function updateTask(index, task) {
+  tasks[index] = task;
+}
+function addTask(task) {
+  tasks.push(task);
+}
+function readTask() {
+  tasks.forEach((task) => {
+    console.log(task);
+  });
+}
 
-addTask("learn Java")
-addTask("learn Laravel")
+addTask("learn Java");
+addTask("learn Laravel");
 readTask();
 deleteTask(4);
 readTask();
