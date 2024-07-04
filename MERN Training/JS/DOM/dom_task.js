@@ -5,9 +5,17 @@
 // 3. with each element, there is a delete button.
 // 4. when delete button is clicked, that element is removed from the list.
 
+
+//DOM Elements 
 const form = document.querySelector('form');
+const taskInputEl = document.getElementById("task");
+const submitButtonEl = document.getElementById("submit");
+const ul = document.querySelector('ul');
+const parentUl = document.getElementById('ul');
+
 let taskToBeEditedList = null;
 let tasks = ["learn html", "learn js", "learn everything"];
+
 // create, read, update, delete
 function addTask(task){
   let ul = document.getElementById('ul');
@@ -18,7 +26,6 @@ function addTask(task){
 
 function readTask(){
   let string="";
-  const ul = document.querySelector('ul');
   const deleteButton = " <button>delete</button> <button>edit</button></li>";
   for(t of tasks){
     str = `<li>${t}`.concat(deleteButton);
@@ -28,10 +35,10 @@ function readTask(){
 }
 
 function updateTask(){
-  const updateTaskValue = document.getElementById("task").value;
+  const updateTaskValue = taskInputEl.value;
   taskToBeEditedList.innerHTML = `${updateTaskValue} <button>delete</button> <button>edit</button>`;
-  document.querySelector("form").reset();
-  document.getElementById("submit").value = "Add";
+  form.reset();
+  submitButtonEl.value = "Add";
   taskToBeEditedList = null;
 }
 
@@ -47,8 +54,6 @@ form.addEventListener('submit', (e)=>{
   document.getElementById('task').value=''; //documet.querySelector("form").reset()
 })
 
-const parentUl = document.getElementById('ul');
-
 parentUl.addEventListener('click', (e)=>{
   // console.log(e);
   const { tagName, textContent, parentElement } = e.target;
@@ -62,13 +67,11 @@ parentUl.addEventListener('click', (e)=>{
     // const taskToBeUpdated = parentElement.textContent.replace("edit","").replace("delete","");
     
     const taskToBeUpdated = parentElement.textContent.split(' ').slice(0,-2).join(' ');
-    document.getElementById("task").value = taskToBeUpdated;
+    taskInputEl.value = taskToBeUpdated;
     document.getElementById("submit").value = "Update";
     taskToBeEditedList = parentElement;
   }
 });
-
-
 readTask();
 
 
