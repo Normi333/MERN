@@ -12,14 +12,14 @@ let tasks = ["learn html", "learn js", "learn everything"];
 function addTask(task){
   let ul = document.getElementById('ul');
   let li = document.createElement('li');
-  li.innerHTML= `${task} <button>delete</button><button>edit</button>`;
+  li.innerHTML= `${task} <button>delete</button> <button>edit</button>`;
   ul.appendChild(li);
 }
 
 function readTask(){
   let string="";
   const ul = document.querySelector('ul');
-  const deleteButton = "<button>delete</button><button>edit</button></li>";
+  const deleteButton = " <button>delete</button> <button>edit</button></li>";
   for(t of tasks){
     str = `<li>${t}`.concat(deleteButton);
     string += str;
@@ -29,7 +29,7 @@ function readTask(){
 
 function updateTask(){
   const updateTaskValue = document.getElementById("task").value;
-  taskToBeEditedList.innerHTML = `${updateTaskValue}<button>delete</button><button>edit</button>`;
+  taskToBeEditedList.innerHTML = `${updateTaskValue} <button>delete</button> <button>edit</button>`;
   document.querySelector("form").reset();
   document.getElementById("submit").value = "Add";
   taskToBeEditedList = null;
@@ -58,7 +58,10 @@ parentUl.addEventListener('click', (e)=>{
 
   if(tagName === "BUTTON" && textContent === "edit"){
     console.log(parentElement.textContent);
-    const taskToBeUpdated = parentElement.textContent.replace("edit","").replace("delete","");
+
+    // const taskToBeUpdated = parentElement.textContent.replace("edit","").replace("delete","");
+    
+    const taskToBeUpdated = parentElement.textContent.split(' ').slice(0,-2).join(' ');
     document.getElementById("task").value = taskToBeUpdated;
     document.getElementById("submit").value = "Update";
     taskToBeEditedList = parentElement;
