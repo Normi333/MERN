@@ -93,7 +93,7 @@ console.log(Object.keys(person));
 console.log(Object.values(person));
 console.log(Object.entries(person));
 
-for (let [key,value] of Object.entries(person)){
+for (let [key, value] of Object.entries(person)) {
     console.log(`${key} : ${value}`);
 };
 

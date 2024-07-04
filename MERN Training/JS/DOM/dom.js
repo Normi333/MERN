@@ -11,15 +11,15 @@ const form = document.querySelector("form");
 // });
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const username = document.querySelector("input").value;
-  alert(username);
+    e.preventDefault();
+    const username = document.querySelector("input").value;
+    alert(username);
 });
 
 const button = document.querySelector("button");
 button.addEventListener("click", (e) => {
-  console.log(e);
-  alert("halla garxes");
+    console.log(e);
+    alert("halla garxes");
 });
 
 let tasks = ["learn html", "learn css", "learn php"];
@@ -27,18 +27,18 @@ let tasks = ["learn html", "learn css", "learn php"];
 //create, read, update, delete
 
 function deleteTask(indexToBeDeleted) {
-  tasks.splice(indexToBeDeleted, 1);
+    tasks.splice(indexToBeDeleted, 1);
 }
 function updateTask(index, task) {
-  tasks[index] = task;
+    tasks[index] = task;
 }
 function addTask(task) {
-  tasks.push(task);
+    tasks.push(task);
 }
 function readTask() {
-  tasks.forEach((task) => {
-    console.log(task);
-  });
+    tasks.forEach((task) => {
+        console.log(task);
+    });
 }
 
 addTask("learn Java");
