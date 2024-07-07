@@ -11,6 +11,7 @@ const taskInputEl = document.getElementById("task");
 const submitButtonEl = document.getElementById("submit");
 const ul = document.querySelector("ul");
 const parentUl = document.getElementById("ul");
+const searchValue = document.getElementById("search");
 
 let taskToBeEditedList = null;
 const tasks = JSON.parse(localStorage.getItem("todos")) ?? [];
@@ -28,7 +29,7 @@ const addTask = () => {
   // localStorage.clear();
 };
 
-function readTask() {
+const readTask = (tasksToBeRendered = tasks) => {
   let string = "";
   const deleteButton = " <button>delete</button> <button>edit</button></li>";
   for (t of tasks) {
@@ -58,6 +59,13 @@ form.addEventListener("submit", (e) => {
   document.getElementById("task").value = ""; //documet.querySelector("form").reset()
 });
 
+searchValue.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchValue = document.getElementById('search').value;
+  const filteredTasks = tasks.filter(task => task.includes(searchValue));
+  console.log(filteredTasks);
+});
+
 parentUl.addEventListener("click", (e) => {
   // console.log(e);
   const { tagName, textContent, parentElement } = e.target;
@@ -65,6 +73,7 @@ parentUl.addEventListener("click", (e) => {
     parentElement.remove();
     tasks.splice(parentElement.dataset.index, 1);
     localStorage.setItem("todos", JSON.stringify(tasks));
+    readTask();
   }
 
   if (tagName === "BUTTON" && textContent === "edit") {
