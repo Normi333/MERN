@@ -1,29 +1,49 @@
 const express = require('express')
+const { default: mongoose, mongo } = require('mongoose')
 const app = express()
 const port = 3000
 
-app.use(express.urlencoded())
+//connection with mongodb 
+mongoose.connect('mongodb://localhost:27017/task-management').then(() => {
+  console.log('Database Connected.');
+})
+
+//creating schema of table
+const taskSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+});
+
+//creating table
+const Task = mongoose.model("Task", taskSchema);
+
+//using urlencoded
+app.use(express.urlencoded());
 const todos = ["learn html", "learn css", "learn php"];
 
 app.get('/', (req, res) => {
-  let textToDisplay = "";
-  todos.forEach((todo, index) => {
-    textToDisplay += `
-  <li>
-    ${todo}
-    <form method="post" action="/delete/${index}">
-    <button type = "submit">delete</button>
-    </form>
-    <a href="/edit/${index}">edit</a>
-  </li>`
-  });
+    Task.find().then((tasks) => {
+    let textToDisplay = "";
 
-  res.send(`
-      <form method="post" action="/add">
-      <input type="text" name="task" id="task" placeholder="your new task" />
-      <input type="submit" id="submit" value="Add" />
+    tasks.forEach((task) => {
+      textToDisplay += `
+    <li>
+      ${task.title}
+      <form method="post" action="/delete/${task._id}">
+      <button type = "submit">delete</button>
       </form>
-      <ul>${textToDisplay}</ul>`);
+      <a href="/edit/${task._id}">edit</a>
+    </li>`;
+    });
+
+    res.send(`
+      <form method="post" action="/add">
+        <input type="text" name="title" id="title" placeholder="your new task" />
+        <input type="submit" id="submit" value="Add" />
+      </form>
+      <ul>${textToDisplay}</ul>`
+    );
+  })
 });
 
 app.get("/:index", (req, res) => {
@@ -32,10 +52,11 @@ app.get("/:index", (req, res) => {
 });
 
 app.post("/add", (req, res) => {
-  // console.log(req.body);
-  // res.send("Form Submitted");
-  todos.push(req.body.task);
-  res.redirect("/");
+  Task.create({ title: req.body.title })
+    .then(() => {
+      res.redirect("/")
+    })
+    .catch((err) => console.log(err));
 });
 
 app.post("/delete/:index", (req, res) => {
