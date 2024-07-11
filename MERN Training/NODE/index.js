@@ -21,29 +21,11 @@ const Task = mongoose.model("Task", taskSchema);
 app.use(express.urlencoded());
 const todos = ["learn html", "learn css", "learn php"];
 
-app.get('/', (req, res) => {
-    Task.find().then((tasks) => {
-    let textToDisplay = "";
+app.set("view engine", "ejs");
 
-    tasks.forEach((task) => {
-      textToDisplay += `
-    <li>
-      ${task.title}
-      <form method="post" action="/delete/${task._id}">
-      <button type = "submit">delete</button>
-      </form>
-      <a href="/edit/${task._id}">edit</a>
-    </li>`;
-    });
-
-    res.send(`
-      <form method="post" action="/add">
-        <input type="text" name="title" id="title" placeholder="your new task" />
-        <input type="submit" id="submit" value="Add" />
-      </form>
-      <ul>${textToDisplay}</ul>`
-    );
-  })
+app.get('/', async (req, res) => {
+  const tasks = await Task.find()
+  res.render("index", { tasks });
 });
 
 app.get("/:index", (req, res) => {
@@ -51,34 +33,37 @@ app.get("/:index", (req, res) => {
   res.send(todos[index]);
 });
 
-app.post("/add", (req, res) => {
-  Task.create({ title: req.body.title })
-    .then(() => {
-      res.redirect("/")
-    })
-    .catch((err) => console.log(err));
+app.post("/add", async (req, res) => {
+  await Task.create({ title: req.body.title })
+  res.redirect("/")
 });
 
-app.post("/delete/:index", (req, res) => {
-  const index = req.params.index;
-  todos.splice(index, 1);
-  res.redirect("/");
-})
+app.post("/delete/:id", async (req, res) => {
+  // const index = req.params.index;
+  // todos.splice(index, 1);
+  // res.redirect("/");
+  const taskId = req.params.id;
+  await Task.deleteOne({ _id: taskId })
+  res.redirect('/');
+});
 
-app.get("/edit/:index", (req, res) => {
-  const index = req.params.index;
+app.get("/edit/:id", async (req, res) => {
+  const taskId = req.params.id;
+  const task = await Task.findOne({ _id: taskId })
   res.send(`
-    <form method="post" action="/edit/${index}">
-    <input type="text" name="task" id="task" value="${todos[index]}"/>
-    <input type="submit" id="submit" value="Update" />
-    </form>
-    `)
-})
+      <form method="post" action="/edit/${taskId}">
+      <input type="text" name="title" id="title" value="${task.title}"/>
+      <input type="submit" id="submit" value="Update" />
+      </form>
+      `)
+});
 
-app.post("/edit/:index", (req, res) => {
-  todos[req.params.index] = req.body.task;
+app.post("/edit/:id", async (req, res) => {
+  // todos[req.params.index] = req.body.task;
+  const taskId = req.params.id;
+  await Task.updateOne({ _id: taskId }, { title: req.body.title })
   res.redirect("/");
-})
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

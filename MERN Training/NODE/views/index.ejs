@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post" action="/add">
+        <input type="text" name="title" id="title" placeholder="your new task" />
+        <input type="submit" id="submit" value="Add" />
+    </form>
+    <ul>
+        <% tasks.forEach((task)=>{ %>
+
+            <li>
+                <%= task.title %>
+                    <form method="post" action="/delete/<%= task._id%>">
+                        <button type="submit">delete</button>
+                    </form>
+                    <a href="/edit/<%=task._id%>">edit</a>
+            </li>
+            <% }) %>
+    </ul>
+</body>
+
+</html>
