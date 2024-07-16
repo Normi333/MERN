@@ -8,21 +8,28 @@
 </head>
 
 <body>
-  <form method="post" action="/add">
-    <input type="text" name="title" id="title" placeholder="your new task" />
-    <input type="submit" id="submit" value="Add" />
-  </form>
-  <ul>
-    <% tasks.forEach((task)=>{ %>
-    <li>
-      <%= task.title %>
-      <form method="post" action="/delete/<%= task._id%>">
-        <button type="submit">delete</button>
-      </form>
-      <a href="/edit/<%=task._id%>">edit</a>
-    </li>
-    <% }) %>
-  </ul>
+  <header>
+    <h1>Task Management TODOs</h1>
+  </header>
+  <main>
+
+    <form method="post" action="/add">
+      <label for="title">Add Tasks:</label>
+      <input type="text" name="title" id="title" placeholder="Your new task" required />
+      <input type="submit" id="submit" value="Add" />
+    </form>
+    <ul>
+      <% tasks.forEach((task)=>{ %>
+      <li>
+        <%= task.title %>
+        <form method="post" action="/delete/<%= task._id%>">
+          <button type="submit">delete</button>
+          <a href="/edit/<%=task._id%>">edit</a>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+  </main>
 </body>
 
 </html>
