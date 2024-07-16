@@ -5,7 +5,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Normi333/MERN.git"
-},
+  },
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "mongoose": "^8.5.0"

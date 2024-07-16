@@ -1,4 +1,5 @@
 const express = require('express')
+const bcrypt = require('bcryptjs');
 const { default: mongoose, mongo } = require('mongoose');
 const connectDb = require('./config/db');
 const taskcontroller = require('./controllers/task.controller');
@@ -18,9 +19,6 @@ app.post("/delete/:id", taskcontroller.deleteTasks);
 app.get("/edit/:id", taskcontroller.editTasks);
 app.post("/edit/:id", taskcontroller.updateTasks);
 
-// app.post("/auth/sign-up", taskcontroller.signUp);
-// app.post("/auth/sign-in", taskcontroller.signIn);
-
 app.get("/auth/sign-in", (req, res) => {
   res.render("sign-in", { message: null });
 });
@@ -30,16 +28,29 @@ app.get("/auth/sign-up", (req, res) => {
 });
 
 app.post("/auth/sign-up", async (req, res) => {
-  await User.create(req.body);
+  const { password, ...rest } = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+  await User.create({ password: hashedPassword, ...rest });
   res.redirect("/");
 })
 
 app.post("/auth/sign-in", async (req, res) => {
-  const user = await User.findOne(req.body);
-  if (user) res.redirect("/");
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    res.render("sign-in", { message: "Invalid Credentials" });
+    return;
+  }
+  const userHashedPassword = user.password;
+  const passwordIsCorrect = bcrypt.compareSync(
+    req.body.password,
+    userHashedPassword
+  );
+  if (passwordIsCorrect) res.redirect("/");
   else res.render("sign-in", { message: "Invalid Credentials" });
-})
+});
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 });
+
