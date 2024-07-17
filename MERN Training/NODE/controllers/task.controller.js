@@ -19,6 +19,7 @@ const deleteTasks = async (req, res) => {
 const editTasks = async (req, res) => {
     const taskId = req.params.id;
     const task = await Task.findOne({ _id: taskId });
+    //eslai ni ejs ma rakhne
     res.send(`
         <h1>Update Task</h1>
         <form method="post" action="/edit/${taskId}">

@@ -28,13 +28,25 @@ const signIn = async (req, res) => {
         req.body.password,
         userHashedPassword
     );
-    if (passwordIsCorrect) res.redirect("/");
-    else res.render("sign-in", { message: "Invalid Credentials" });
+    if (passwordIsCorrect) {
+        req.session.user = user;
+        res.redirect("/");
+    } else {
+        res.render("sign-in", { message: "Invalid Credentials" });
+    }
 };
+
+const logOut = async (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie("connect.sid");
+        res.redirect("/auth/sign-in");
+    })
+}
 
 module.exports = {
     signInPage,
     signUpPage,
     signIn,
-    signUp
+    signUp,
+    logOut,
 }
