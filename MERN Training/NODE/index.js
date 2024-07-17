@@ -19,13 +19,13 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded());
 app.use(
   session({
-  secret: "123456",
-  resave: false,
-  store: MongoStore.create({
-    mongoUrl: "mongodb://localhost:27017/task-management",
-  }),
-  saveUninitialized: false,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 },  
+    secret: "123456",
+    resave: false,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://localhost:27017/task-management",
+    }),
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
 

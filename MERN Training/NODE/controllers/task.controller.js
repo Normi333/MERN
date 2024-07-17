@@ -20,14 +20,7 @@ const editTasks = async (req, res) => {
     const taskId = req.params.id;
     const task = await Task.findOne({ _id: taskId });
     //eslai ni ejs ma rakhne
-    res.send(`
-        <h1>Update Task</h1>
-        <form method="post" action="/edit/${taskId}">
-        <label for="title">Update Task:</label>
-        <input type="text" name="title" id="title" value="${task.title}"/>
-        <input type="submit" id="submit" value="Update" />
-        </form>
-        `);
+    res.render("edit", { task });
 };
 
 const updateTasks = async (req, res) => {

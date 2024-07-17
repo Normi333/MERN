@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Page</title>
+</head>
+
+<body>
+  <header>
+    <h1>Update Task</h1>
+  </header>
+  <main>
+    <form method="post" action="/edit/<%= task._id%>">
+      <label for="title">Update Task:</label>
+      <input type="text" name="title" id="title" value="<%= task.title %>" />
+      <input type="submit" id="submit" value="Update" />
+    </form>
+  </main>
+</body>
+
+</html>
