@@ -4,20 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Page</title>
+  <title>Edit Task</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .edit-header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .edit-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
+  <header class="edit-header">
     <h1>Update Task</h1>
   </header>
-  <main>
-    <form method="post" action="/edit/<%= task._id%>">
-      <label for="title">Update Task:</label>
-      <input type="text" name="title" id="title" value="<%= task.title %>" />
-      <input type="submit" id="submit" value="Update" />
-    </form>
+  <main class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="edit-container">
+          <form method="post" action="/edit/<%= task._id%>" class="form-group">
+            <label for="title" class="form-label">Update Task:</label>
+            <input type="text" name="title" id="title" value="<%= task.title %>" class="form-control mb-3" required />
+            <input type="submit" id="submit" value="Update" class="btn btn-primary" />
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -4,37 +4,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Task Management TODOs</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .task-header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .task-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .task-form input[type="text"] {
+      width: 70%;
+    }
+
+    .task-form input[type="submit"] {
+      margin-left: 10px;
+    }
+
+    .task-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .task-list li:last-child {
+      border-bottom: none;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
+  <header class="task-header">
     <h1>Task Management TODOs</h1>
-    <nav>
+    <nav class="text-right">
       <form action="/auth/logout" method="post">
-        <input type="submit" id="submit" value="LogOut" />
+        <input type="submit" id="submit" value="LogOut" class="btn btn-light" />
       </form>
     </nav>
   </header>
-  <main>
-
-    <form method="post" action="/add">
-      <label for="title">Add Tasks:</label>
-      <input type="text" name="title" id="title" placeholder="Your new task" required />
-      <input type="submit" id="submit" value="Add" />
-    </form>
-    <ul>
-      <% tasks.forEach((task)=>{ %>
-      <li>
-        <%= task.title %>
-        <form method="post" action="/delete/<%= task._id%>">
-          <button type="submit">delete</button>
-          <a href="/edit/<%=task._id%>">edit</a>
-        </form>
-      </li>
-      <% }) %>
-    </ul>
+  <main class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="task-container">
+          <form method="post" action="/add" class="task-form form-inline">
+            <label for="title" class="sr-only">Add Tasks:</label>
+            <input type="text" name="title" id="title" placeholder="Your new task" class="form-control mr-2 mb-2" required />
+            <input type="submit" id="submit" value="Add" class="btn btn-primary mb-2" />
+          </form>
+          <ul class="task-list list-unstyled mt-4">
+            <% tasks.forEach((task) => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span><%= task.title %></span>
+              <div>
+                <form method="post" action="/delete/<%= task._id %>" class="d-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                <a href="/edit/<%= task._id %>" class="btn btn-secondary btn-sm ml-2">Edit</a>
+              </div>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
