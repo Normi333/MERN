@@ -46,12 +46,31 @@
     .task-list li:last-child {
       border-bottom: none;
     }
+
+    .task-number {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .logo {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 
 <body>
   <header class="task-header">
-    <h1>Task Management TODOs</h1>
+    <div class="header-title">
+      <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img/https://todos.gt/wp-content/uploads/2019/09/logo-png.png" alt="Todos Logo" class="logo">
+      <h1>Task Management TODOs</h1>
+    </div>
     <nav class="text-right">
       <form action="/auth/logout" method="post">
         <input type="submit" id="submit" value="LogOut" class="btn btn-light" />
@@ -68,9 +87,12 @@
             <input type="submit" id="submit" value="Add" class="btn btn-primary mb-2" />
           </form>
           <ul class="task-list list-unstyled mt-4">
-            <% tasks.forEach((task) => { %>
+            <% tasks.forEach((task, index) => { %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <span><%= task.title %></span>
+              <div class="d-flex align-items-center">
+                <span class="task-number"><%= index + 1 %>.</span>
+                <span><%= task.title %></span>
+              </div>
               <div>
                 <form method="post" action="/delete/<%= task._id %>" class="d-inline">
                   <button type="submit" class="btn btn-danger btn-sm">Delete</button>

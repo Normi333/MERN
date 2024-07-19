@@ -38,12 +38,36 @@
     .text-center {
       text-align: center;
     }
+
+    .signin-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 
 <body>
   <header class="signin-header">
-    <h1>Sign In</h1>
+    <div class="header-title">
+      <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img/https://todos.gt/wp-content/uploads/2019/09/logo-png.png" alt="Todos Logo" class="logo">
+      <div>
+        <h1>To-do APP</h1>
+        <h3>What do you need to do?</h3>
+      </div>
+    </div>
   </header>
   <main class="container">
     <div class="row justify-content-center">
@@ -54,6 +78,7 @@
             <%= message %>
           </div>
           <% } %>
+          <h2 class="signin-title">Sign In</h2>
           <form action="/auth/sign-in" method="post">
             <div class="form-group">
               <label for="email">Email:</label>
