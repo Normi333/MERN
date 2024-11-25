@@ -6,7 +6,7 @@ const getTodoFromLocalStorage = () => {
   return JSON.parse(todo) ?? [];
 };
 
-function Button({ label, onClick }) {}
+// function Button({ label, onClick }) {}
 
 function App() {
   let [indexToBeEdited, setIndexToBeEdited] = useState(null);
