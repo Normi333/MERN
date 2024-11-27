@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -10,6 +11,7 @@ const COLORS = {
   success: "darkgreen",
   error: "red",
 };
+
 function Button({ label, onClick, color }) {
   return (
     <button

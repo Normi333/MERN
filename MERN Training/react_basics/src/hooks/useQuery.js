@@ -34,7 +34,7 @@ export function useQuery(url) {
         // setError(err.message);
         dispatch({ type: "error", payload: err.message });
       });
-  }, []);
+  }, [url]);
 
   return state;
 }

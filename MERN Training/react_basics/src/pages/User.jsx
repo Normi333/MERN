@@ -1,4 +1,6 @@
 import { useQuery } from "../hooks/useQuery";
+import { ActionButton } from "../hooks/ActionButton";
+
 export function User() {
   const { state, error, data } = useQuery(
     "https://jsonplaceholder.typicode.com/users"
@@ -10,7 +12,11 @@ export function User() {
       {state === "success" && (
         <ul>
           {data.map(({ name }) => {
-            return <li key={name}>{name}</li>;
+            return (
+              <li key={name}>
+                {name} <ActionButton />
+              </li>
+            );
           })}
         </ul>
       )}
