@@ -46,12 +46,9 @@ export function Counter() {
 
   const MemoHeader = memo(Header);
 
-  const handleChange = useCallback(
-    (e) => {
-      setValue(e.target.value + state.count);
-    },
-    [state.count]
-  );
+  const handleChange = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
 
   const factorial = useMemo(
     () => calculateFactorial(state.count),
