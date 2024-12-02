@@ -17,7 +17,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/auth", authRoutes);
 
 app.use((err, req, res, next) => {
-  // save somewhere in cloud, or file (coloudwatch, sentry)
+  // save somewhere in cloud, or file (cloudwatch, sentry)
   console.log(err);
 
   res.status(500).json({
@@ -30,4 +30,4 @@ app.listen(port, () => {
 });
 
 
-//tomorrow: sort by price, authentication, autorization
+//tomorrow: sort by price, authentication, authorization
