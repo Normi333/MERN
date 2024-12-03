@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid2";
 import ProductCard from "../components/ProductsCard";
 import { Typography } from "@mui/material";
-import Skeleton from "@mui/material/Skeleton";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { ProductsSkeleton } from "./ProductsSkeleton";
 
 const getFeaturedProduct = async () => {
   const res = await axios.get("http://localhost:3000/api/product/featured");
@@ -24,18 +24,7 @@ export default function FeaturedProducts() {
       <Grid container spacing={2}>
         {isLoading ? (
           <>
-            <Grid size={{ md: 3 }}>
-              <Skeleton variant="rectangular" width={200} height={200} />
-            </Grid>
-            <Grid size={{ md: 3 }}>
-              <Skeleton variant="rectangular" width={200} height={200} />
-            </Grid>
-            <Grid size={{ md: 3 }}>
-              <Skeleton variant="rectangular" width={200} height={200} />
-            </Grid>
-            <Grid size={{ md: 3 }}>
-              <Skeleton variant="rectangular" width={200} height={200} />
-            </Grid>
+            <ProductsSkeleton />
           </>
         ) : (
           featuredproducts?.map((product) => (
