@@ -10,15 +10,15 @@ const createProduct = async (req, res) => {
     featured: req.body.featured,
   });
   res.json({
-    message: "Product created succesfully.",
+    message: "Product created successfully.",
   });
 };
 
 const getProducts = async (req, res) => {
   // page = 1, limit= 5 => skip(0),
-  // page =2, skiep(5) => 2-1 * 5 = 5
-  // page = 3, skiep(10) 3 - 1 * 5 = 10
-  // page  4 , skeip (15), 4 -1 * 5 = 15
+  // page =2, skip(5) => 2-1 * 5 = 5
+  // page = 3, skip(10) 3 - 1 * 5 = 10
+  // page  4 , skip (15), 4 -1 * 5 = 15
   const { page, limit } = req.query;
   const products = await Product.find()
     .skip((page - 1) * limit)
@@ -47,14 +47,14 @@ const getLatestProducts = async (req, res) => {
 const deleteProduct = async (req, res) => {
   await Product.deleteOne({ _id: req.params.id });
   res.json({
-    message: "Product deleted succesfully.",
+    message: "Product deleted successfully.",
   });
 };
 
 const updateProduct = async (req, res) => {
   await Product.updateOne({ _id: req.params.id }, req.body);
   res.json({
-    message: "Product updated succesfully.",
+    message: "Product updated successfully.",
   });
 };
 
@@ -66,4 +66,4 @@ module.exports = {
   getLatestProducts,
   getFeaturedProducts,
 };
-// localhost:3000/api/products
+// localhost:3000/api/product
