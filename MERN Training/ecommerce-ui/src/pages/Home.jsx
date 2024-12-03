@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <img src="/banner.png" width="100%" />
+      <img src="/banner.jpg" width="100%" />
       <LatestProducts />
       <FeaturedProducts />
     </>

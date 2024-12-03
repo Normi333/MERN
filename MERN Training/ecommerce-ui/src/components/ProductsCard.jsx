@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
   return (
     <Card>
       <CardMedia
-        sx={{ height: 200 }}
+        sx={{ height: 350}}
         image={`http://localhost:3000/${image}`}
         title="green iguana"
       />
