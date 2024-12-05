@@ -8,7 +8,6 @@ import { useState } from "react";
 
 const getLatestProduct = async () => {
   const res = await axios.get("http://localhost:3000/api/product");
-  console.log(res.data);
   return res.data;
 };
 
@@ -32,10 +31,6 @@ export default function Products() {
 
   if (isLoading) {
     return <ProductsSkeleton />;
-  }
-
-  if (!data || !data.data) {
-    return <div>No products available</div>;
   }
 
   return (

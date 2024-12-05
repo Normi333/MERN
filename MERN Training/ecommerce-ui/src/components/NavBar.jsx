@@ -116,11 +116,32 @@ function NavBar() {
             <Button
               key="products"
               onClick={() => {
+                navigate("/");
+              }}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Button>
+            <Button
+              key="products"
+              onClick={() => {
                 navigate("/products");
               }}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Products
+            </Button>
+            <Button
+              key="products"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Pricing
+            </Button>
+            <Button
+              key="products"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Blog
             </Button>
             {!authUser && (
               <Button
