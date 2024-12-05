@@ -28,7 +28,7 @@ export default function LatestProducts() {
           </>
         ) : (
           latestProducts?.map((product) => (
-            <Grid key={product._id} size={{ md: 3 }}>
+            <Grid key={product._id} size={{ md: 3, sm: 6 }}>
               <ProductCard product={product} />
             </Grid>
           ))

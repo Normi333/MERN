@@ -15,16 +15,14 @@ const createProduct = async (req, res) => {
 };
 
 const getProducts = async (req, res) => {
-  // page = 1, limit= 5 => skip(0),
-  // page =2, skip(5) => 2-1 * 5 = 5
-  // page = 3, skip(10) 3 - 1 * 5 = 10
-  // page  4 , skip (15), 4 -1 * 5 = 15
   const { page, limit } = req.query;
   const products = await Product.find()
     .skip((page - 1) * limit)
     .limit(limit);
+  const total = await Product.countDocuments();
   res.json({
     data: products,
+    total,
   });
 };
 
@@ -66,4 +64,4 @@ module.exports = {
   getLatestProducts,
   getFeaturedProducts,
 };
-// localhost:3000/api/product
+// localhost:3000/api/products
