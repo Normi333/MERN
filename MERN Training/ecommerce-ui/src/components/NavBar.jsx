@@ -12,9 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useAuthUser } from "../providers/AuthProvider";
 import { useNavigate } from "react-router";
-import { useAuthUser } from "../App";
-const pages = ["Products", "Pricing", "Blog"];
+
+// const pages = ["Products", "Pricing", "Blog"];
 
 function NavBar() {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
+            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -86,11 +88,11 @@ function NavBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: "center" }}>{page}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -113,36 +115,28 @@ function NavBar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/* {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {page}
+              </Button>
+            ))} */}
             <Button
-              key="products"
-              onClick={() => {
-                navigate("/");
-              }}
+              onClick={() => navigate("/")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
             </Button>
             <Button
-              key="products"
-              onClick={() => {
-                navigate("/products");
-              }}
+              onClick={() => navigate("/products")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Products
             </Button>
-            <Button
-              key="products"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Pricing
-            </Button>
-            <Button
-              key="products"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Blog
-            </Button>
+
             {!authUser && (
               <Button
                 sx={{ my: 2, color: "white", display: "block", ml: "auto" }}
@@ -183,8 +177,8 @@ function NavBar() {
                 <MenuItem>
                   <Typography sx={{ textAlign: "center" }}>Profile</Typography>
                 </MenuItem>
-                {authUser.roles.includes("admin") && (
-                  <MenuItem>
+                {authUser?.roles?.includes("admin") && (
+                  <MenuItem onClick={() => navigate("/dashboard")}>
                     <Typography sx={{ textAlign: "center" }}>
                       Dashboard
                     </Typography>

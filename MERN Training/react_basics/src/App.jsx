@@ -1,27 +1,28 @@
-/* eslint-disable no-unused-vars */
-// import { User } from "./pages/User";
-// import { Pokemon } from "./pages/Pokemon";
-import { createContext, useContext, useState } from "react";
-import Counter from "./counter";
+import { createContext, useState, useContext } from "react";
+import Counter from "./Counter";
 
 const UserContext = createContext(null);
 
-export function UseUser() {
+// eslint-disable-next-line react-refresh/only-export-components
+export function useUser() {
   return useContext(UserContext);
 }
+
 function App() {
-  const [user, setUser] = useState({ name: "user", role: ["user", "admin"] });
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState({ name: "Admin", role: ["admin"] });
   return (
     <>
-      <Counter />
-      {/* <UserContext.Provider value={user}>
-        <User />
-        <Pokemon />
-      </UserContext.Provider> */}
+      <UserContext.Provider value={user}>
+        {/* <Users />
+        <Pokemon /> */}
+        <Counter />
+      </UserContext.Provider>
     </>
   );
 }
 
-export default App;
 
-//https://jsonplaceholder.typicode.com/posts
+
+
+export default App;
