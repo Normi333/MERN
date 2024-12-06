@@ -47,7 +47,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -124,12 +124,6 @@ function NavBar() {
                 {page}
               </Button>
             ))} */}
-            <Button
-              onClick={() => navigate("/")}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Home
-            </Button>
             <Button
               onClick={() => navigate("/products")}
               sx={{ my: 2, color: "white", display: "block" }}
