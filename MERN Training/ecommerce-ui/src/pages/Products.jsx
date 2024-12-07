@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Typography } from "@mui/material";
 
 const getProducts = async (limit, page, order) => {
   const res = await axios.get("http://localhost:3000/api/product", {
@@ -46,6 +47,42 @@ export default function Products() {
   return (
     <>
       <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          my: 2,
+          px: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: 30,
+            fontWeight: "bold",
+            color: "#3B1C32",
+            fontFamily: "Roboto, sans-serif", 
+          }}
+        >
+          AVAILABLE PRODUCTS
+        </Typography>
+        <FormControl sx={{ width: "400px" }}>
+          <InputLabel id="demo-simple-select-label">Sort By:</InputLabel>
+          <Select
+            size="small"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={order}
+            label="Sort By"
+            onChange={handleChange}
+          >
+            <MenuItem value="">Best Match</MenuItem>
+            <MenuItem value={"asc"}>Prices Low to High</MenuItem>
+            <MenuItem value={"desc"}>Prices High to Low</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      {/* <Box
         sx={{ minWidth: 120, my: 2, display: "flex", justifyContent: "end" }}
       >
         <FormControl sx={{ width: "400px" }}>
@@ -63,7 +100,7 @@ export default function Products() {
             <MenuItem value={"desc"}>Prices High to Low</MenuItem>
           </Select>
         </FormControl>
-      </Box>
+      </Box> */}
       <Grid container spacing={2}>
         {isLoading ? (
           <>
